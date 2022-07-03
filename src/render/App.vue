@@ -1,5 +1,5 @@
 <template>
-  <button @click="sendMessage">发送消息</button>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
@@ -9,11 +9,6 @@ import { sendMessage } from './vscode'
 export default defineComponent({
   mounted() {
     console.log(window)
-  },
-  methods: {
-    sendMessage() {
-      sendMessage({ type: 'test' })
-    },
   },
 })
 </script>
