@@ -1,8 +1,5 @@
-
-const sendMessage = (options: {[key: string]: any})=>{
+const sendMessage = (options: { [key: string]: any }) => {
   window.electronAPI.sendMessage(options)
 }
 
-export  {
-  sendMessage
-}
+export { sendMessage }

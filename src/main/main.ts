@@ -1,15 +1,16 @@
 // Modules to control application life and create native browser window
 
-import {app, BrowserWindow, ipcMain, screen}  from 'electron'
-const path = require('path')
+import { app, BrowserWindow, ipcMain, screen } from 'electron'
 
-function createWindow () {
-  let display = screen.getAllDisplays()
-  let externalDisplay = display.find((display:Electron.Display)=>{
+import * as path from 'path'
+
+function createWindow() {
+  const displays = screen.getAllDisplays()
+  const externalDisplay = displays.find((display: Electron.Display) => {
     return display.bounds.x !== 0 || display.bounds.y !== 0
   })
   let mainWindow: BrowserWindow | null = null
-  if(externalDisplay){
+  if (externalDisplay) {
     mainWindow = new BrowserWindow({
       fullscreen: false,
       x: externalDisplay.bounds.x + 50,
@@ -17,25 +18,24 @@ function createWindow () {
       width: 1300,
       height: 900,
       webPreferences: {
-        preload: path.join(__dirname, 'preload.js')
-      }
+        preload: path.join(__dirname, 'preload.js'),
+      },
     })
-  }else{
-    // Create the browser window.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  } else {
+    // Create the browser window.
     mainWindow = new BrowserWindow({
       width: 800,
       height: 600,
       webPreferences: {
-        preload: path.join(__dirname, 'preload.js')
-      }
+        preload: path.join(__dirname, 'preload.js'),
+      },
     })
   }
-  
 
   // and load the index.html of the app.
-  if(process.env.NODE_ENV !== 'production'){
+  if (process.env.NODE_ENV !== 'production') {
     mainWindow?.loadURL('http://localhost:8090')
-  }else{
+  } else {
     mainWindow?.loadFile('index.html')
   }
 
@@ -63,7 +63,7 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
-ipcMain.handle('messageTest', (event, data)=>{
+ipcMain.handle('messageTest', (event, data) => {
   console.log(data)
 })
 
