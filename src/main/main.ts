@@ -3,8 +3,10 @@
 import { app, BrowserWindow, ipcMain, screen } from 'electron'
 
 import * as path from 'path'
+import registerInvokeHandler from './handlers/index'
 
 function createWindow() {
+  registerInvokeHandler()
   const displays = screen.getAllDisplays()
   const externalDisplay = displays.find((display: Electron.Display) => {
     return display.bounds.x !== 0 || display.bounds.y !== 0
@@ -61,10 +63,6 @@ app.whenReady().then(() => {
 // explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
-})
-
-ipcMain.handle('messageTest', (event, data) => {
-  console.log(data)
 })
 
 // In this file you can include the rest of your app's specific main process

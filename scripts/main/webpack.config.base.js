@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 
 module.exports = {
-  target: "electron-main",
+  target: 'electron-main',
   entry: {
     main: path.resolve(__dirname, '../../src/main/main.ts'),
-    preload: path.resolve(__dirname, '../../src/main/preload.ts')
+    preload: path.resolve(__dirname, '../../src/main/preload.ts'),
   },
   output: {
     filename: '[name].js',
@@ -15,9 +16,11 @@ module.exports = {
     rules: [
       {
         test: /.ts$/,
-        use: ['ts-loader']
-      }
-    ]
-  }
-  
+        use: ['ts-loader'],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.ts'],
+  },
 }

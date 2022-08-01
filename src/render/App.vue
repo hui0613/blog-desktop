@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { sendMessage } from './vscode'
 
 export default defineComponent({
   mounted() {
