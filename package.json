@@ -2,11 +2,13 @@
   "name": "blog-desktop",
   "version": "1.0.0",
   "description": "A minimal Electron application",
-  "main": "src/main/main.ts",
+  "main": ".webpack/main",
   "scripts": {
     "dev": "node scripts/runner-dev.js",
     "build": "webpack --config scripts/render/webpack.config.base.js",
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -18,11 +20,20 @@
   ],
   "author": "hui0613",
   "license": "MIT",
+  "config": {
+    "forge": "./forge.config.js"
+  },
   "devDependencies": {
     "@babel/core": "^7.18.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/maker-deb": "^6.0.0-beta.63",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
+    "@electron-forge/maker-zip": "^6.0.0-beta.63",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.63",
     "@typescript-eslint/eslint-plugin": "^5.30.4",
     "@typescript-eslint/parser": "^5.30.4",
     "babel-loader": "^8.2.5",
@@ -48,6 +59,7 @@
   },
   "dependencies": {
     "vue": "^3.2.37",
-    "vue-router": "^4.0.16"
+    "vue-router": "^4.0.16",
+    "electron-squirrel-startup": "^1.0.0"
   }
 }

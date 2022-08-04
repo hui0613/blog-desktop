@@ -5,6 +5,8 @@ import { app, BrowserWindow, ipcMain, screen } from 'electron'
 import * as path from 'path'
 import registerInvokeHandler from './handlers/index'
 
+declare const MAIN_WINDOW_WEBPACK_ENTRY: string
+
 function createWindow() {
   registerInvokeHandler()
   const displays = screen.getAllDisplays()
@@ -21,6 +23,7 @@ function createWindow() {
       height: 900,
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
+        webSecurity: false,
       },
     })
   } else {
@@ -38,7 +41,7 @@ function createWindow() {
   if (process.env.NODE_ENV !== 'production') {
     mainWindow?.loadURL('http://localhost:8090')
   } else {
-    mainWindow?.loadFile('index.html')
+    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
   }
 
   // Open the DevTools.
