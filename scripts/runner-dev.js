@@ -53,7 +53,7 @@ function startRenderer() {
 }
 
 function startElectron() {
-  const entryPath = path.resolve(__dirname, '../dist/main.js')
+  const entryPath = path.resolve(__dirname, '../.webpack/main/index.js')
   electronProcess = spawn(electron, [entryPath])
 
   electronProcess.stdout.on('data', (chunk) => {
