@@ -35,11 +35,13 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "@electron-forge/plugin-webpack": "6.0.0-beta.63",
+    "@types/markdown-it": "^12.2.3",
     "@typescript-eslint/eslint-plugin": "^5.30.4",
     "@typescript-eslint/parser": "^5.30.4",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "core-js": "^3.23.3",
+    "css-loader": "^6.7.1",
     "electron": "^19.0.6",
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -49,6 +51,9 @@
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.7.1",
     "regenerator-runtime": "^0.13.9",
+    "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",
     "vue-loader": "^17.0.0",
@@ -59,7 +64,9 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "clipboard": "^2.0.11",
     "electron-squirrel-startup": "^1.0.0",
+    "markdown-it": "^13.0.1",
     "vue": "^3.2.37",
     "vue-router": "^4.0.16"
   }

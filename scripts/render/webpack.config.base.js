@@ -5,8 +5,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require.resolve('sass'),
+            },
+          },
+        ],
       },
       {
         test: /.vue$/,
@@ -21,6 +30,9 @@ module.exports = {
   },
 
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../../src/'),
+    },
     extensions: ['.ts', '.js', '.vue'],
   },
 }

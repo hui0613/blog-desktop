@@ -1,0 +1,52 @@
+.dew-editor-container {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #999;
+  .dew-editor-menu-container {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+    border-bottom: 1px solid #999;
+    .dww-editor-menu-item {
+      float: left;
+      padding: 0 4px;
+      cursor: pointer;
+    }
+    .dew-editor-builtin-menu {
+      line-height: 30px;
+    }
+  }
+  .dew-editor-main-area {
+    flex-grow: 1;
+    textarea {
+      width: 100%;
+      height: 100%;
+      border: none;
+      resize: none;
+      outline: none;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .dew-editor-preview-area {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+  }
+
+  .clipboard-box {
+    position: absolute;
+    z-index: -1;
+    visibility: hidden;
+  }
+}
