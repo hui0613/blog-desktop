@@ -43,9 +43,9 @@
 
 <script setup lang="ts">
 import { defineEmits, ref } from 'vue'
-import UploadFile from '@/components/upload/UploadFile.vue'
+import UploadFile from '../components/upload/UploadFile.vue'
 import axios from 'axios'
-import { imgUploadApi } from '@/config/config'
+import { imgUploadApi } from '../config/config'
 
 const emit = defineEmits(['insertContent'])
 const showImgDialog = ref<boolean>(false)

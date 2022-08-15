@@ -56,6 +56,8 @@
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
     "typescript": "^4.7.4",
+    "unplugin-auto-import": "^0.11.2",
+    "unplugin-vue-components": "^0.22.4",
     "vue-loader": "^17.0.0",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
@@ -64,8 +66,10 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "clipboard": "^2.0.11",
     "electron-squirrel-startup": "^1.0.0",
+    "element-plus": "^2.2.16",
     "markdown-it": "^13.0.1",
     "vue": "^3.2.37",
     "vue-router": "^4.0.16"

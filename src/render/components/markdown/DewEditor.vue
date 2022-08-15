@@ -69,7 +69,6 @@ export default defineComponent({
   mounted() {
     this.setEditorTextAreaHeight()
     this.listenResize()
-    console.log(this.menuList)
   },
 
   methods: {
@@ -91,7 +90,6 @@ export default defineComponent({
       this.openPreview = data
     },
     setEditorTextAreaHeight() {
-      console.log(this.$refs)
       const editorContainer = this.$refs.editorMainContainer as any
 
       this.editorTextAreaHeight = editorContainer.clientHeight - 30
@@ -141,7 +139,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .dew-editor-container {
   width: 100%;
   height: 100%;
