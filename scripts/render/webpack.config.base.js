@@ -22,9 +22,38 @@ module.exports = {
         use: ['vue-loader'],
       },
       {
-        test: /.tsx?$/,
+        test: /.ts?$/,
         loader: 'ts-loader',
         options: { appendTsSuffixTo: [/\.vue$/] },
+      },
+      {
+        test: /\.tsx$/,
+        use: [
+          /* config.module.rule('tsx').use('babel-loader') */
+          {
+            loader: 'babel-loader',
+          },
+          /* config.module.rule('tsx').use('ts-loader') */
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              happyPackMode: false,
+              appendTsxSuffixTo: ['\\.vue$'],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              symbolId: 'icon-[name]',
+            },
+          },
+        ],
       },
     ],
   },
@@ -33,6 +62,6 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, '../../src/'),
     },
-    extensions: ['.ts', '.js', '.vue'],
+    extensions: ['.ts', '.js', '.vue', '.tsx'],
   },
 }

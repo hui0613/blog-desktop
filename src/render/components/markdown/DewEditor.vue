@@ -34,6 +34,7 @@ import MarkdownIt from 'markdown-it'
 import { copyTextToClipboard, insertTextIntoEditor, isExistSelection } from './libs/dewEditor'
 import { debounce } from './utils/tools'
 import '@/render/components/markdown/assets/markdown.css'
+import { conforms } from 'lodash'
 const markdownIt = new MarkdownIt({
   html: true, // Enable HTML tags in source
   xhtmlOut: true, // Use '/' to close single tags (<br />).

@@ -1,5 +1,5 @@
 <template>
-  <div class="img-menu-container">
+  <div class="dew-img-menu-container">
     <div class="img-menu-icon-container" @click="toggleImgMenuStatus">
       <svg
         t="1660833968170"
@@ -42,14 +42,20 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, ref } from 'vue'
-import UploadFile from '../components/upload/UploadFile.vue'
+import { defineEmits, ref, defineProps, onMounted } from 'vue'
+import UploadFile from '../../../components/upload/UploadFile.vue'
 import axios from 'axios'
-import { imgUploadApi } from '../config/config'
 
 const emit = defineEmits(['insertContent'])
-const showImgDialog = ref<boolean>(false)
+const showImgDialog = ref<boolean>(true)
 const uploadFileWay = ref<boolean>(true)
+
+const props = defineProps({
+  api: {
+    type: String,
+    default: '',
+  },
+})
 
 const insertContent = (event: any) => {
   event.preventDefault()
@@ -73,7 +79,7 @@ function uploadFile(files: File[], data?: { [key: string]: any }) {
     formData.append('files', files[i])
   }
   axios({
-    url: imgUploadApi,
+    url: props.api,
     method: 'POST',
     data: formData,
     headers: {
@@ -89,12 +95,18 @@ function uploadFile(files: File[], data?: { [key: string]: any }) {
 }
 
 function toggleImgMenuStatus() {
+  console.log('ccccc')
   showImgDialog.value = !showImgDialog.value
 }
+
+onMounted(() => {
+  console.log('=======')
+  console.log(props)
+})
 </script>
 
-<style lang="scss" scoped>
-.img-menu-container {
+<style lang="scss">
+.dew-img-menu-container {
   .img-menu-icon-container {
     width: 100%;
     height: 100%;
