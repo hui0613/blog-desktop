@@ -42,7 +42,7 @@
     "@vue/cli-plugin-babel": "^5.0.8",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
-    "core-js": "^3.23.3",
+    "core-js": "^3.25.1",
     "css-loader": "^6.7.1",
     "electron": "^19.0.6",
     "eslint": "^8.19.0",
