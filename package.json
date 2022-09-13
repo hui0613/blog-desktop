@@ -29,7 +29,7 @@
     "@babel/plugin-syntax-jsx": "^7.18.6",
     "@babel/preset-env": "^7.19.0",
     "@babel/preset-typescript": "^7.18.6",
-    "@electron-forge/cli": "^6.0.0-beta.63",
+    "@electron-forge/cli": "^6.0.0-beta.66",
     "@electron-forge/maker-deb": "^6.0.0-beta.63",
     "@electron-forge/maker-dmg": "^6.0.0-beta.65",
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
