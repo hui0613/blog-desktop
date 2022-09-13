@@ -3,8 +3,12 @@
 import { app, BrowserWindow, ipcMain, screen } from 'electron'
 
 import * as path from 'path'
+import registerInvokeHandler from './handlers/index'
+
+declare const MAIN_WINDOW_WEBPACK_ENTRY: string
 
 function createWindow() {
+  registerInvokeHandler()
   const displays = screen.getAllDisplays()
   const externalDisplay = displays.find((display: Electron.Display) => {
     return display.bounds.x !== 0 || display.bounds.y !== 0
@@ -19,6 +23,7 @@ function createWindow() {
       height: 900,
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
+        webSecurity: false,
       },
     })
   } else {
@@ -36,7 +41,7 @@ function createWindow() {
   if (process.env.NODE_ENV !== 'production') {
     mainWindow?.loadURL('http://localhost:8090')
   } else {
-    mainWindow?.loadFile('index.html')
+    mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
   }
 
   // Open the DevTools.
@@ -61,10 +66,6 @@ app.whenReady().then(() => {
 // explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
-})
-
-ipcMain.handle('messageTest', (event, data) => {
-  console.log(data)
 })
 
 // In this file you can include the rest of your app's specific main process

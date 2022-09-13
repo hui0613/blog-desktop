@@ -1,47 +1,67 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin }= require('clean-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader/dist/index')
-
 module.exports = {
-    entry: path.resolve(__dirname, '../../src/render/index.ts'),
-    target: 'web',
-    output: {
-      filename: "main.js",
-      path: path.resolve(__dirname, '../../dist/render'),
-      publicPath: 'auto'
-    },
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: [
-            'style-loader',
-            'css-loader'
-          ]
-        },
-        {
-          test: /.vue$/,
-          use: ['vue-loader']
-        },
-        {
-          test: /.tsx?$/,
-          loader: 'ts-loader',
-          options: { appendTsSuffixTo: [/\.vue$/] }
-        }
-      ]
-    },
+  module: {
+    rules: [
+      {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require.resolve('sass'),
+            },
+          },
+        ],
+      },
+      {
+        test: /.vue$/,
+        use: ['vue-loader'],
+      },
+      {
+        test: /.ts?$/,
+        loader: 'ts-loader',
+        options: { appendTsSuffixTo: [/\.vue$/] },
+      },
+      {
+        test: /\.tsx$/,
+        use: [
+          /* config.module.rule('tsx').use('babel-loader') */
+          {
+            loader: 'babel-loader',
+          },
+          /* config.module.rule('tsx').use('ts-loader') */
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              happyPackMode: false,
+              appendTsxSuffixTo: ['\\.vue$'],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              symbolId: 'icon-[name]',
+            },
+          },
+        ],
+      },
+    ],
+  },
 
-    resolve:{
-      extensions: ['.ts', '.js', '.vue']
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../../src/'),
     },
-    plugins: [
-      // 打包前先清除 dist 目录
-      new CleanWebpackPlugin,
-      new VueLoaderPlugin,
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, '../../src/render/index.html')
-      }),
-    ]
+    extensions: ['.ts', '.js', '.vue', '.tsx'],
+  },
 }

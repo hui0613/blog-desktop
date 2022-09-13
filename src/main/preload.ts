@@ -2,5 +2,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  sendMessage: (args: any) => ipcRenderer.invoke('messageTest', args),
+  openPlatformLogin: (args: any) => ipcRenderer.invoke('blog:openLogin', args),
 })

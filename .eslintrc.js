@@ -8,7 +8,8 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error', { ignoreTypeReferences: true }],
     'no-prototype-builtins': 'off',
     'import/prefer-default-export': 'off',
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "no-restricted-syntax": 'off'
   },
   settings: {
     'import/resolver': {
