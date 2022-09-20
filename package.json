@@ -38,7 +38,7 @@
     "@electron-forge/plugin-webpack": "6.0.0-beta.63",
     "@types/markdown-it": "^12.2.3",
     "@typescript-eslint/eslint-plugin": "^5.30.4",
-    "@typescript-eslint/parser": "^5.30.4",
+    "@typescript-eslint/parser": "^5.38.0",
     "@vue/cli-plugin-babel": "^5.0.8",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
