@@ -97,3 +97,72 @@ export default {
   ]
 }
 ```
+
+## 配置 eslint 和 prettier
+
+> vscode 需要安装 eslint 和 prettier 插件配合使用
+
+安装依赖
+
+```shell
+yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint -D
+```
+
+### 添加配置
+
+- .eslintrc.js
+
+```js
+const eslintrc = {
+  parser: '@typescript-eslint/parser', // 使用 ts 解析器
+  extends: [
+    'eslint:recommended', // eslint 推荐规则
+    'plugin:@typescript-eslint/recommended', // ts 推荐规则
+  ],
+  plugins: ['@typescript-eslint'],
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+  },
+  parserOptions: {
+    project: './tsconfig.eslint.json',
+    ecmaVersion: 2019,
+    sourceType: 'module',
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+    },
+  },
+  rules: {}, // 自定义
+}
+
+module.exports = eslintrc
+```
+
+- .prettierrc
+
+```json
+{
+  "semi": false,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 140
+}
+```
+
+- tsconfig.eslint.json
+
+```json
+/* tsconfig.eslint.json */
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.js"
+  ]
+}
+```
