@@ -1,40 +1,80 @@
-# electron-quick-start
 
-**Clone and run for a quick way to see Electron in action.**
 
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/latest/tutorial/quick-start) within the Electron documentation.
+## 项目初始化
 
-A basic Electron application needs just these files:
+使用 electron-quick-start 作为项目模板，后面进行修改
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-- `preload.js` - A content script that runs before the renderer process loads.
+## 添加 TypeScript
 
-You can learn more about each of these components in depth within the [Tutorial](https://electronjs.org/docs/latest/tutorial/tutorial-1-prerequisites).
+```shell
+# 安装 typescript
+yarn add typescript -D
 
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies
-npm install
-# Run the app
-npm start
+# 初始化生成 tsconfig.json
+tsc --init
 ```
 
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+## 修改目录
 
-## Resources for Learning Electron
+创建 src/main 目录，存放主进程代码
 
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [Electron Fiddle](https://electronjs.org/fiddle) - Electron Fiddle, an app to test small Electron experiments
+编辑 src/main/main.ts
 
-## License
+```ts
+const {app, BrowserWindow} = require('electron')
+const path = require('path')
 
-[CC0 1.0 (Public Domain)](LICENSE.md)
+function createWindow () {
+  const mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
+  })
+
+  mainWindow.loadFile('index.html')
+
+  // mainWindow.webContents.openDevTools()
+}
+
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+})
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') app.quit()
+})
+
+```
+
+编辑 src/main/preload.ts
+
+```ts
+window.addEventListener('DOMContentLoaded', () => {
+  const replaceText = (selector: string, text: string) => {
+    const element = document.getElementById(selector)
+    if (element) element.innerText = text
+  }
+
+  for (const type of ['chrome', 'node', 'electron']) {
+    replaceText(`${type}-version`, process.versions[type]!)
+  }
+})
+```
+
+## 安装 rollup
+
+对于主进程的 ts 代码，使用 rollup 打包成 json
+
+```shell
+yarn add -D rollup 
+```
+
+### 配置 rollup 
+
+在根目录 rollup.config.js

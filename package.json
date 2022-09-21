@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "build": "rollup -c",
     "package": "electron-builder"
   },
   "repository": "https://github.com/electron/electron-quick-start",
@@ -19,6 +20,11 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^20.1.4",
-    "electron-builder": "^23.3.3"
+    "electron-builder": "^23.3.3",
+    "rollup": "^2.79.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.34.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.3"
   }
 }
