@@ -1,5 +1,4 @@
 
-
 ## 项目初始化
 
 使用 electron-quick-start 作为项目模板，后面进行修改
@@ -75,6 +74,26 @@ window.addEventListener('DOMContentLoaded', () => {
 yarn add -D rollup 
 ```
 
-### 配置 rollup 
+### 配置 rollup
 
 在根目录 rollup.config.js
+
+```js
+import json from 'rollup-plugin-json';
+import typescript from 'rollup-plugin-typescript2';
+import * as path from 'path'
+
+export default {
+  input: 'src/main/main.ts',
+  output: {
+    file: 'out/main.js',
+    format: 'es'
+  },
+  plugins: [
+    json(),
+    typescript({
+      tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+    })
+  ]
+}
+```
