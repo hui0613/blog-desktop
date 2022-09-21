@@ -166,3 +166,11 @@ module.exports = eslintrc
   ]
 }
 ```
+
+## 修改项目运行路径
+
+修改 `package.json` 中的 `main` 字段， 与 `rollup.config.js` 中 `main.ts` 输出一样。在将 `ts` 转换成 `js` 之后，执行 `yarn start` ，正常应该是可以启动应用的
+
+## 添加 render 项目
+
+使用 vueCli 创建一个 vue 3 项目，然后将相关配置合并过来

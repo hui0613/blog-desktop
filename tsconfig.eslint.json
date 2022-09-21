@@ -2,10 +2,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
-  "include": [
-    "**/*.ts",
-    "**/*.js"
-  ]
+  "include": ["**/*.ts", "**/*.js", "**/*.vue", "**/*.tsx"]
 }

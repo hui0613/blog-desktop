@@ -1,8 +1,10 @@
 const eslintrc = {
-  parser: '@typescript-eslint/parser', // 使用 ts 解析器
+  // parser: '@typescript-eslint/parser', // 使用 ts 解析器
   extends: [
     'eslint:recommended', // eslint 推荐规则
     'plugin:@typescript-eslint/recommended', // ts 推荐规则
+    'plugin:vue/vue3-essential',
+    '@vue/typescript/recommended',
   ],
   plugins: ['@typescript-eslint'],
   env: {

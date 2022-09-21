@@ -13,7 +13,12 @@ function createWindow() {
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  // console.log(process.env.NODE_ENV)
+  // if (process.env.NODE_ENV === 'development') {
+  mainWindow.loadURL('http://localhost:8080/ ')
+  // } else {
+  //   mainWindow.loadFile('index.html')
+  // }
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
