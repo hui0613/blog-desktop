@@ -175,4 +175,99 @@ module.exports = eslintrc
 
 使用 vueCli 创建一个 vue 3 项目，然后将相关配置合并过来
 
-##
+## 添加 gulp
+
+安装 gulp
+```js
+yarn add gulp -D
+```
+
+编写 gulpfile.js
+
+```js
+const {series} = require('gulp')
+const {rollup} = require('rollup')
+const fs= require('fs-extra')
+const path = require('path')
+
+const rollupConfig = require('./rollup.config.js')
+
+async function cleanMainOut(){
+  fs.removeSync(path.resolve(__dirname, '../out/main'))
+}
+
+async function compilerMainByRollup(){
+  let inputOption = []
+  let outputOption = []
+
+  if(Array.isArray(rollupConfig)){
+    rollupConfig.forEach(item=>{
+      inputOption.push({
+        input: item.input,
+        plugins: item.plugins
+      })
+      outputOption.push(item.output)
+    })
+  }
+
+  inputOption.forEach(async (item, index)=>{
+    const bundle = await rollup(item)
+
+    if(Array.isArray(outputOption[index])){
+      outputOption[index].forEach(async outputItem=>{
+        await bundle.write(outputItem)
+      })
+    }else{
+      await bundle.write(outputOption[index])
+    }
+  })
+}
+
+const buildMain = series(cleanMainOut, compilerMainByRollup)
+
+const build = series(buildMain)
+
+exports.default = build
+```
+
+
+修改 rollup.config.js
+
+```js
+const json = require ('rollup-plugin-json')
+const typescript = require ('rollup-plugin-typescript2')
+const path = require ('path')
+const { uglify } = require ("rollup-plugin-uglify");
+
+module.exports = [
+  {
+    input: 'src/main/main.ts',
+    output: {
+      file: 'out/main/main.js',
+      format: 'cjs',
+    },
+    plugins: [
+      json(),
+      typescript({
+        tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+      }),
+      uglify()
+    ],
+  },
+  {
+    input: 'src/main/preload.ts',
+    output: {
+      file: 'out/main/preload.js',
+      format: 'cjs',
+    },
+    plugins: [
+      json(),
+      typescript({
+        tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+      }),
+      uglify()
+    ],
+    
+  },
+]
+```
