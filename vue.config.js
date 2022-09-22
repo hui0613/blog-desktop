@@ -5,5 +5,5 @@ module.exports = defineConfig({
   pages: {
     index: './src/render/main.ts',
   },
-  outputDir: 'out/render',
+  outputDir: 'out/build/render',
 })
