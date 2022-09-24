@@ -5,11 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "node-terminal",
       "request": "launch",
       "name": "Start Electron",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/script/start.js",
+      "command": "node ${workspaceFolder}/script/start.js",
       "preLaunchTask": "${defaultBuildTask}"
     },
     {

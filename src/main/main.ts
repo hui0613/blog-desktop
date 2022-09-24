@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
+import * as log from 'electron-log'
 import fs from 'fs'
 
 function createWindow() {
@@ -13,11 +14,13 @@ function createWindow() {
     },
   })
 
-  // and load the index.html of the app.
-  console.log(__dirname)
-  // const dirs = fs.readdirSync(path.resolve(__dirname)).join('++')
+  console.log(app.getPath('userData'))
 
-  // console.log(dirs)
+  // and load the index.html of the app.
+  log.info(__dirname)
+  const dirs = fs.readdirSync(path.resolve(__dirname)).join('++')
+
+  log.info(dirs)
 
   // fs.writeFileSync(path.resolve(__dirname, '../test.txt'), dirs)
   if (process.env.NODE_ENV === 'development') {
