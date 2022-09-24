@@ -12,7 +12,7 @@
       "preLaunchTask": "${defaultBuildTask}"
     },
     {
-      "command": "npm run serve",
+      "command": "cd src/render && npm run serve",
       "name": "Run render serve",
       "request": "launch",
       "type": "node-terminal"
