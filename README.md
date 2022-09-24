@@ -178,6 +178,7 @@ module.exports = eslintrc
 ## 添加 gulp
 
 安装 gulp
+
 ```js
 yarn add gulp -D
 ```
@@ -230,7 +231,6 @@ const build = series(buildMain)
 exports.default = build
 ```
 
-
 修改 rollup.config.js
 
 ```js
@@ -270,4 +270,24 @@ module.exports = [
     
   },
 ]
+```
+
+## 添加打包
+
+这里使用 electron-builder 进行打包
+
+```shell
+yarn add electron-builder -D
+```
+
+修改 package.json 中的 main 字段
+
+```js
+"main": "out/build/main/main.js"
+```
+
+添加打包脚本
+
+```json
+"package": "electron-builder"
 ```

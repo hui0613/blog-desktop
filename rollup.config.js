@@ -10,13 +10,7 @@ module.exports = [
       file: 'out/build/main/main.js',
       format: 'cjs',
     },
-    plugins: [
-      json(),
-      typescript({
-        tsconfig: path.resolve(__dirname, 'tsconfig.json'),
-      }),
-      uglify(),
-    ],
+    plugins: [json(), uglify()],
   },
   {
     input: 'out/main/preload.js',

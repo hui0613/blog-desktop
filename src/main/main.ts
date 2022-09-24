@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from 'electron'
 import path from 'path'
+import fs from 'fs'
 
 function createWindow() {
   // Create the browser window.
@@ -13,10 +14,16 @@ function createWindow() {
   })
 
   // and load the index.html of the app.
+  console.log(__dirname)
+  // const dirs = fs.readdirSync(path.resolve(__dirname)).join('++')
+
+  // console.log(dirs)
+
+  // fs.writeFileSync(path.resolve(__dirname, '../test.txt'), dirs)
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:8080/ ')
   } else {
-    mainWindow.loadFile('index.html')
+    mainWindow.loadFile('out/build/render/index.html')
   }
 
   // Open the DevTools.

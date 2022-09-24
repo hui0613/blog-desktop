@@ -5,5 +5,6 @@ module.exports = defineConfig({
   pages: {
     index: './src/render/main.ts',
   },
+  publicPath: './',
   outputDir: 'out/build/render',
 })

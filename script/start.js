@@ -17,7 +17,6 @@ function startMain() {
   fs.watch(
     entry,
     debounce(() => {
-      console.log('dddddd')
       if (electronProcess && electronProcess.kill) {
         process.kill(electronProcess.pid)
         electronProcess = null

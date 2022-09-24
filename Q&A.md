@@ -53,3 +53,9 @@ env
 
 - mac ： ~/Library/Caches/electron
 - windows: /user/AppData/local/electron
+
+### Q： 打包后白屏
+
+打包后页面的加载路径需要相对项目根目录
+
+`mainWindow.loadFile('out/build/render/index.html')`
