@@ -28,6 +28,7 @@
     "@types/lodash": "^4.14.185",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
+    "chalk": "4.1.2",
     "electron": "^20.1.4",
     "electron-builder": "^23.3.3",
     "eslint": "^8.23.1",

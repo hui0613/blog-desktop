@@ -1,28 +1,37 @@
 // Modules to control application life and create native browser window
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, screen } from 'electron'
 import path from 'path'
-import * as log from 'electron-log'
-import fs from 'fs'
+import Logger from './utils/Logger'
 
 function createWindow() {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-    },
+  const displays = screen.getAllDisplays()
+  const externalDisplay = displays.find((display: Electron.Display) => {
+    return display.bounds.x !== 0 || display.bounds.y !== 0
   })
-
-  console.log(app.getPath('userData'))
-
-  // and load the index.html of the app.
-  log.info(__dirname)
-  const dirs = fs.readdirSync(path.resolve(__dirname)).join('++')
-
-  log.info(dirs)
-
-  // fs.writeFileSync(path.resolve(__dirname, '../test.txt'), dirs)
+  let mainWindow: BrowserWindow | null = null
+  if (externalDisplay) {
+    mainWindow = new BrowserWindow({
+      fullscreen: false,
+      x: externalDisplay.bounds.x + 50,
+      y: externalDisplay.bounds.y + 200,
+      width: 1300,
+      height: 1400,
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+      },
+    })
+  } else {
+    // Create the browser window.
+    mainWindow = new BrowserWindow({
+      width: 800,
+      height: 1900,
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+      },
+    })
+  }
+  Logger.warn('dddddds')
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:8080/ ')
   } else {

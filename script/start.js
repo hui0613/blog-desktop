@@ -4,6 +4,7 @@ const path = require('path')
 const gulp = require('gulp')
 const shell = require('shelljs')
 const fs = require('fs')
+const fse = require('fs-extra')
 const { debounce } = require('lodash')
 
 const electron = require('electron')
@@ -14,8 +15,12 @@ process.env.NODE_ENV = 'development'
 
 function startMain() {
   const entry = path.resolve(__dirname, '../out/main')
-  fs.watch(
+
+  fse.watch(
     entry,
+    {
+      recursive: true,
+    },
     debounce(() => {
       if (electronProcess && electronProcess.kill) {
         process.kill(electronProcess.pid)
@@ -31,14 +36,7 @@ function startMain() {
 
 function startElectron() {
   const entry = path.resolve(__dirname, '../out/main/main.js')
-  electronProcess = spawn(electron, [entry])
-  electronProcess.stdout.on('data', (chunk) => {
-    console.log(chunk.toString())
-  })
-
-  electronProcess.stdin.on('data', (err) => {
-    console.log(err.toString())
-  })
+  electronProcess = spawn(electron, [entry], { stdio: 'inherit' })
 }
 
 startMain()
