@@ -105,8 +105,8 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/render/**/*.vue"],
-  "exclude": ["node_modules", "src/render"],
+  "include": ["packages/**/*.ts"],
+  "exclude": ["node_modules"],
   "watchOptions": {
     // Use native file system events for files and directories
     "watchFile": "useFsEvents",

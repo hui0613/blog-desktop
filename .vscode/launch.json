@@ -8,20 +8,20 @@
       "type": "node-terminal",
       "request": "launch",
       "name": "Start Electron",
-      "command": "node ${workspaceFolder}/script/start.js",
+      "command": "pnpm run start",
       "preLaunchTask": "${defaultBuildTask}"
-    },
-    {
-      "command": "cd src/render && npm run serve",
-      "name": "Run render serve",
-      "request": "launch",
-      "type": "node-terminal"
     }
+    // {
+    //   "command": "cd src/render && npm run serve",
+    //   "name": "Run render serve",
+    //   "request": "launch",
+    //   "type": "node-terminal"
+    // }
   ],
   "compounds": [
     {
       "name": "Compound",
-      "configurations": ["Run render serve", "Start Electron"]
+      "configurations": ["Start Electron"]
     }
   ]
 }

@@ -1,14 +1,10 @@
 {
-  "name": "electron-quick-start",
   "version": "1.0.0",
   "description": "A minimal Electron application",
-  "main": "out/build/main/main.js",
+  "private": true,
   "scripts": {
-    "start": "node script/start.js",
-    "build": "gulp",
     "watch": "tsc -watch -p ./",
-    "build:render": "vue-cli-service build",
-    "package": "electron-builder"
+    "start": "pnpm -C internal/dev-serve dev"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -20,36 +16,22 @@
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
-  "dependencies": {
-    "electron-log": "^4.4.8",
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
-    "@types/lodash": "^4.14.185",
-    "@typescript-eslint/eslint-plugin": "^5.38.0",
-    "@typescript-eslint/parser": "^5.38.0",
-    "chalk": "4.1.2",
-    "electron": "^20.1.4",
-    "electron-builder": "^23.3.3",
-    "eslint": "^8.23.1",
-    "eslint-plugin-vue": "^8.0.3",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "electron": "^21.1.1",
+    "eslint": "^8.26.0",
     "fs-extra": "^10.1.0",
-    "gulp": "^4.0.2",
-    "rollup": "^2.79.0",
+    "rollup": "^3.2.5",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-typescript2": "^0.34.0",
-    "rollup-plugin-uglify": "^6.0.4",
-    "shelljs": "^0.8.5",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.8.3"
+    "rollup-plugin-typescript2": "^0.34.1",
+    "typescript": "^4.8.4"
   },
-  "build": {
-    "appId": "com.dew.test",
-    "files": [
-      "out/build/",
-      "node_modules/**/*",
-      "package.json"
-    ]
+  "dependencies": {
+    "@dew/built-utils": "workspace:^1.0.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.14.187",
+    "lodash": "^4.17.21"
   }
 }
