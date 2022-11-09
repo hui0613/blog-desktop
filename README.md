@@ -1,293 +1,71 @@
+# electron-vite-vue
 
-## 项目初始化
+🥳 Really simple `Electron` + `Vue` + `Vite` boilerplate.
 
-使用 electron-quick-start 作为项目模板，后面进行修改
+[![awesome-vite](https://awesome.re/mentioned-badge.svg)](https://github.com/vitejs/awesome-vite)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ae3863e3-1aec-4eb1-8f9f-1890af56929d/deploy-status)](https://app.netlify.com/sites/electron-vite/deploys)
+[![GitHub license](https://img.shields.io/github/license/caoxiemeihao/electron-vite-vue)](https://github.com/electron-vite/electron-vite-vue/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/caoxiemeihao/electron-vite-vue?color=fa6470)](https://github.com/electron-vite/electron-vite-vue)
+[![GitHub forks](https://img.shields.io/github/forks/caoxiemeihao/electron-vite-vue)](https://github.com/electron-vite/electron-vite-vue)
+[![GitHub Build](https://github.com/electron-vite/electron-vite-vue/actions/workflows/build.yml/badge.svg)](https://github.com/electron-vite/electron-vite-vue/actions/workflows/build.yml)
 
-## 添加 TypeScript
+## Features
 
-```shell
-# 安装 typescript
-yarn add typescript -D
+📦 Out of the box  
+🎯 Based on the official [template-vue-ts](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-vue-ts), less invasive  
+🌱 Extensible, really simple directory structure  
+💪 Support using Node.js API in Electron-Renderer  
+🔩 Support C/C++ native addons  
+🖥 It's easy to implement multiple windows  
 
-# 初始化生成 tsconfig.json
-tsc --init
+## Quick Start
+
+```sh
+npm create electron-vite
 ```
 
-## 修改目录
+<!-- [![quick-start](https://asciinema.org/a/483731.svg)](https://asciinema.org/a/483731) -->
 
-创建 src/main 目录，存放主进程代码
+![electron-vite-vue.gif](https://github.com/electron-vite/electron-vite-vue/blob/main/public/electron-vite-vue.gif?raw=true)
 
-编辑 src/main/main.ts
+## Debug
 
-```ts
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
+![electron-vite-react-debug.gif](https://github.com/electron-vite/electron-vite-react/blob/main/public/electron-vite-react-debug.gif?raw=true)
 
-function createWindow () {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+## Directory
 
-  mainWindow.loadFile('index.html')
-
-  // mainWindow.webContents.openDevTools()
-}
-
-app.whenReady().then(() => {
-  createWindow()
-
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
-
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
-
+```diff
++ ├─┬ electron
++ │ ├─┬ main
++ │ │ └── index.ts    entry of Electron-Main
++ │ └─┬ preload
++ │   └── index.ts    entry of Preload-Scripts
+  ├─┬ src
+  │ └── main.ts       entry of Electron-Renderer
+  ├── index.html
+  ├── package.json
+  └── vite.config.ts
 ```
 
-编辑 src/main/preload.ts
+## Be aware
 
-```ts
-window.addEventListener('DOMContentLoaded', () => {
-  const replaceText = (selector: string, text: string) => {
-    const element = document.getElementById(selector)
-    if (element) element.innerText = text
-  }
+🚨 By default, this template integrates Node.js in the Renderer process. If you don't need it, you just remove the option below. [Because it will modify the default config of Vite](https://github.com/electron-vite/vite-plugin-electron/tree/main/packages/electron-renderer#config-presets-opinionated).
 
-  for (const type of ['chrome', 'node', 'electron']) {
-    replaceText(`${type}-version`, process.versions[type]!)
-  }
-})
-```
-
-## 安装 rollup
-
-对于主进程的 ts 代码，使用 rollup 打包成 json
-
-```shell
-yarn add -D rollup 
-```
-
-### 配置 rollup
-
-在根目录 rollup.config.js
-
-```js
-import json from 'rollup-plugin-json';
-import typescript from 'rollup-plugin-typescript2';
-import * as path from 'path'
+```diff
+# vite.config.ts
 
 export default {
-  input: 'src/main/main.ts',
-  output: {
-    file: 'out/main.js',
-    format: 'es'
-  },
   plugins: [
-    json(),
-    typescript({
-      tsconfig: path.resolve(__dirname, 'tsconfig.json'),
-    })
-  ]
-}
-```
-
-## 配置 eslint 和 prettier
-
-> vscode 需要安装 eslint 和 prettier 插件配合使用
-
-安装依赖
-
-```shell
-yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint -D
-```
-
-### 添加配置
-
-- .eslintrc.js
-
-```js
-const eslintrc = {
-  parser: '@typescript-eslint/parser', // 使用 ts 解析器
-  extends: [
-    'eslint:recommended', // eslint 推荐规则
-    'plugin:@typescript-eslint/recommended', // ts 推荐规则
+-   // Use Node.js API in the Renderer-process
+-   renderer({
+-     nodeIntegration: true,
+-   }),
   ],
-  plugins: ['@typescript-eslint'],
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-  },
-  parserOptions: {
-    project: './tsconfig.eslint.json',
-    ecmaVersion: 2019,
-    sourceType: 'module',
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true,
-    },
-  },
-  rules: {}, // 自定义
-}
-
-module.exports = eslintrc
-```
-
-- .prettierrc
-
-```json
-{
-  "semi": false,
-  "tabWidth": 2,
-  "singleQuote": true,
-  "trailingComma": "es5",
-  "printWidth": 140
 }
 ```
 
-- tsconfig.eslint.json
+## FAQ
 
-```json
-/* tsconfig.eslint.json */
-{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "resolveJsonModule": true,
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.js"
-  ]
-}
-```
-
-## 修改项目运行路径
-
-修改 `package.json` 中的 `main` 字段， 与 `rollup.config.js` 中 `main.ts` 输出一样。在将 `ts` 转换成 `js` 之后，执行 `yarn start` ，正常应该是可以启动应用的
-
-## 添加 render 项目
-
-使用 vueCli 创建一个 vue 3 项目，然后将相关配置合并过来
-
-## 添加 gulp
-
-安装 gulp
-
-```js
-yarn add gulp -D
-```
-
-编写 gulpfile.js
-
-```js
-const {series} = require('gulp')
-const {rollup} = require('rollup')
-const fs= require('fs-extra')
-const path = require('path')
-
-const rollupConfig = require('./rollup.config.js')
-
-async function cleanMainOut(){
-  fs.removeSync(path.resolve(__dirname, '../out/main'))
-}
-
-async function compilerMainByRollup(){
-  let inputOption = []
-  let outputOption = []
-
-  if(Array.isArray(rollupConfig)){
-    rollupConfig.forEach(item=>{
-      inputOption.push({
-        input: item.input,
-        plugins: item.plugins
-      })
-      outputOption.push(item.output)
-    })
-  }
-
-  inputOption.forEach(async (item, index)=>{
-    const bundle = await rollup(item)
-
-    if(Array.isArray(outputOption[index])){
-      outputOption[index].forEach(async outputItem=>{
-        await bundle.write(outputItem)
-      })
-    }else{
-      await bundle.write(outputOption[index])
-    }
-  })
-}
-
-const buildMain = series(cleanMainOut, compilerMainByRollup)
-
-const build = series(buildMain)
-
-exports.default = build
-```
-
-修改 rollup.config.js
-
-```js
-const json = require ('rollup-plugin-json')
-const typescript = require ('rollup-plugin-typescript2')
-const path = require ('path')
-const { uglify } = require ("rollup-plugin-uglify");
-
-module.exports = [
-  {
-    input: 'src/main/main.ts',
-    output: {
-      file: 'out/main/main.js',
-      format: 'cjs',
-    },
-    plugins: [
-      json(),
-      typescript({
-        tsconfig: path.resolve(__dirname, 'tsconfig.json'),
-      }),
-      uglify()
-    ],
-  },
-  {
-    input: 'src/main/preload.ts',
-    output: {
-      file: 'out/main/preload.js',
-      format: 'cjs',
-    },
-    plugins: [
-      json(),
-      typescript({
-        tsconfig: path.resolve(__dirname, 'tsconfig.json'),
-      }),
-      uglify()
-    ],
-    
-  },
-]
-```
-
-## 添加打包
-
-这里使用 electron-builder 进行打包
-
-```shell
-yarn add electron-builder -D
-```
-
-修改 package.json 中的 main 字段
-
-```js
-"main": "out/build/main/main.js"
-```
-
-添加打包脚本
-
-```json
-"package": "electron-builder"
-```
+- [dependencies vs devDependencies](https://github.com/electron-vite/vite-plugin-electron/tree/main/packages/electron-renderer#dependencies-vs-devdependencies)
+- [Using C/C++ native addons in Electron-Renderer](https://github.com/electron-vite/vite-plugin-electron/tree/main/packages/electron-renderer#load-nodejs-cc-native-modules)
+- [Node.js ESM packages](https://github.com/electron-vite/vite-plugin-electron/tree/main/packages/electron-renderer#nodejs-esm-packages) (e.g. `execa` `node-fetch`)
