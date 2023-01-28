@@ -1,37 +1,51 @@
-import { AsyncParallelHook } from 'tapable'
-
-export type DewAsyncHookHandlerCallback = (...args: any[]) => void
-export type DewAsyncHookHandler = (arg1: any, callback: DewAsyncHookHandlerCallback) => void
-export type DewAsyncHookPromiseHandler = (arg1: any) => Promise<any>
-
-export class DewAsyncParallelHook {
-  private hook: any
-  constructor() {
-    this.hook = new AsyncParallelHook(['arg1', 'callback'])
+export class DewParallelHook {
+  private tasks: any[]
+  private promiseTask: any[]
+  constructor(...args: any[]) {
+    this.tasks = []
+    this.promiseTask = []
   }
 
-  public tapAsync(name: string, handler: DewAsyncHookHandler) {
-    this.hook.tapAsync(name, (arg1, callback, tapableCallback) => {
-      setTimeout(() => {
-        handler(arg1, (...rest) => {
-          callback(...rest)
-          tapableCallback()
-        })
-      }, 1000);
+  public tapAsync(name: string, handler: any) {
+    this.tasks.push({
+      name,
+      handler
     })
   }
 
-  public tapPromise(name: string, handler: DewAsyncHookPromiseHandler) {
-    this.hook.tapPromise(name, (arg1, callback) => {
-      return handler(arg1).then((res) => {
-        callback(res)
-      }).catch((err) => {
-        callback(err)
+  public tapPromise(name: string, handler: any) {
+    //
+    this.promiseTask.push({
+      name,
+      handler
+    })
+  }
+
+  public callAsync(...args) {
+    let finalCallback = args.pop()
+    let result = args.pop()
+    let index = 0
+
+    const done = () => {
+      index++
+
+      if (index === (this.tasks.length + this.promiseTask.length)) {
+        finalCallback()
+      }
+    }
+
+    this.tasks.forEach(task => {
+      task.handler(...args, (res) => {
+        result(res)
+        done()
       })
     })
-  }
 
-  public callAsync(handlerCallback, callback) {
-    this.hook.callAsync('dddddd', handlerCallback, callback)
+    this.promiseTask.forEach(task => {
+      task.handler(...args).then(res => {
+        result(res)
+        done()
+      })
+    })
   }
 }

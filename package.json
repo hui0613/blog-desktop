@@ -39,7 +39,6 @@
     "vue3",
     "vue"
   ],
-  "dependencies": {
-    "tapable": "^2.2.1"
-  }
+  "dependencies": {}
 }
+

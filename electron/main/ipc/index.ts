@@ -1,22 +1,18 @@
 import { ipcMain } from 'electron'
-import { DewAsyncParallelHook } from '../tapable'
+import { DewParallelHook } from '../tapable'
 
 export function registerIpcInvoke() {
-  const hook = new DewAsyncParallelHook()
+  const hook = new DewParallelHook()
 
   hook.tapAsync('test', (arg1, callback) => {
     console.log('111111111111')
     setTimeout(() => {
-      console.log(arg1)
       callback('第一个执行结果')
     }, 1000)
   })
 
   hook.tapAsync('test2', (arg1, callback) => {
-    console.log('222222222222')
-
     setTimeout(() => {
-      console.log(arg1)
       callback('第二个执行结果')
     }, 1000)
   })
@@ -31,8 +27,8 @@ export function registerIpcInvoke() {
 
   ipcMain.handle("test", () => {
     hook.callAsync(
+      'ccccc',
       (...rest) => {
-        console.log('每一个钩子函数结束的结果')
         console.log(rest)
       },
       () => {
