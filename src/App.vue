@@ -1,15 +1,16 @@
 <template>
-  <div class="dew-login">login</div>
+  <div class="dew-login" @click="test">login</div>
 </template>
 
 <script lang="ts" setup>
-setTimeout(() => {
-  
-}, 1000);
+import { ipcTest } from '@render/utils/ipc'
+const test = () => {
+  ipcTest()
+}
 </script>
 
 <style scoped lang="scss">
-.dew-login{
+.dew-login {
   width: 100px;
   height: 100px;
   box-shadow: 2px 2px 4px #696666;

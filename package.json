@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "chcp 65001 && vite",
     "build": "vue-tsc --noEmit && vite build && electron-builder"
   },
   "engines": {
@@ -38,5 +38,8 @@
     "vite",
     "vue3",
     "vue"
-  ]
+  ],
+  "dependencies": {
+    "tapable": "^2.2.1"
+  }
 }

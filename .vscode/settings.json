@@ -8,5 +8,6 @@
       ],
       "url": "https://json.schemastore.org/electron-builder"
     }
-  ]
+  ],
+  "editor.formatOnSave": true
 }

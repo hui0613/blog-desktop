@@ -10,9 +10,12 @@
     "sourceMap": true,
     "baseUrl": "./",
     "strict": true,
-    "paths": {},
+    "paths": {
+      "@render/*": ["src/*"],
+      "@main/*": ["electron/main/*"]
+    },
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
   "include": ["src"],
   "references": [

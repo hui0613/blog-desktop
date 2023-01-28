@@ -5,6 +5,7 @@ import electron from 'vite-electron-plugin'
 import { customStart, loadViteEnv } from 'vite-electron-plugin/plugin'
 import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
+import * as path from 'path'
 
 rmSync('dist-electron', { recursive: true, force: true })
 
@@ -24,7 +25,7 @@ export default defineConfig({
             customStart(debounce(() => console.log(/* For `.vscode/.debug.script.mjs` */'[startup] Electron App'))),
           ]
           : []),
-          // Allow use `import.meta.env.VITE_SOME_KEY` in Electron-Main
+        // Allow use `import.meta.env.VITE_SOME_KEY` in Electron-Main
         loadViteEnv(),
       ],
     }),
@@ -44,6 +45,12 @@ export default defineConfig({
   build: {
     assetsDir: '', // #287
   },
+  resolve: {
+    alias: {
+      '@render': path.resolve(__dirname, './src'),
+      "@main": path.resolve(__dirname, './electron/main')
+    }
+  }
 })
 
 function debounce<Fn extends (...args: any[]) => void>(fn: Fn, delay = 299) {
