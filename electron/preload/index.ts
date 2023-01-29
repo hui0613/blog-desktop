@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  test: () => ipcRenderer.invoke('test')
+  createArticle: (arg) => ipcRenderer.invoke('blog:create', arg)
 })

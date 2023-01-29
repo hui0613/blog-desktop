@@ -1,9 +1,9 @@
 {
-  "name": "electron-vue-vite",
-  "version": "2.1.0",
+  "name": "dew-blog-helper",
+  "version": "0.0.1",
   "main": "dist-electron/main/index.js",
   "description": "Really simple Electron + Vue + Vite boilerplate.",
-  "author": "草鞋没号 <308487730@qq.com>",
+  "author": "听说 <2516772557@qq.com>",
   "license": "MIT",
   "private": true,
   "scripts": {

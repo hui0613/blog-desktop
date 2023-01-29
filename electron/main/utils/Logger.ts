@@ -5,8 +5,8 @@ chalk.enable = true
 
 const consoleLog = console.log
 class InnerLog {
-  static info(logStr: any) {
-    consoleLog(logStr)
+  static info(...args: any[]) {
+    consoleLog(...args)
   }
 
   static warn(logStr: string) {
@@ -20,8 +20,8 @@ class InnerLog {
 
 export default class Logger {
   private static logger = process.env.NODE_ENV === 'development' ? InnerLog : log
-  public static info(logStr: string) {
-    Logger.logger.info(logStr)
+  public static info(...args: any[]) {
+    Logger.logger.info(...args)
   }
 
   public static warn(logStr: string) {
@@ -33,7 +33,7 @@ export default class Logger {
   }
 
   public static log(...arg: any[]) {
-    Logger.logger.info(arg)
+    Logger.logger.info(...arg)
   }
 }
 

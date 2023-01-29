@@ -1,4 +1,6 @@
-export class DewParallelHook {
+import { DewHook } from '@main/types/DewHook'
+
+export class DewParallelHook implements DewHook {
   private tasks: any[]
   private promiseTask: any[]
   constructor(...args: any[]) {
@@ -21,9 +23,7 @@ export class DewParallelHook {
     })
   }
 
-  public callAsync(...args) {
-    let finalCallback = args.pop()
-    let result = args.pop()
+  public callAsync(args: any, resultCB: (...rest: any[]) => void, finalCallback: () => void) {
     let index = 0
 
     const done = () => {
@@ -36,14 +36,14 @@ export class DewParallelHook {
 
     this.tasks.forEach(task => {
       task.handler(...args, (res) => {
-        result(res)
+        resultCB(res)
         done()
       })
     })
 
     this.promiseTask.forEach(task => {
       task.handler(...args).then(res => {
-        result(res)
+        resultCB(res)
         done()
       })
     })

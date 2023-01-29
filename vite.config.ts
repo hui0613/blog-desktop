@@ -2,7 +2,7 @@ import { rmSync } from 'fs'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import electron from 'vite-electron-plugin'
-import { customStart, loadViteEnv } from 'vite-electron-plugin/plugin'
+import { customStart, loadViteEnv, alias } from 'vite-electron-plugin/plugin'
 import renderer from 'vite-plugin-electron-renderer'
 import pkg from './package.json'
 import * as path from 'path'
@@ -27,11 +27,15 @@ export default defineConfig({
           : []),
         // Allow use `import.meta.env.VITE_SOME_KEY` in Electron-Main
         loadViteEnv(),
+        alias([{
+          find: '@main/main',
+          replacement: path.resolve(__dirname, './dist-electron/main')
+        }])
       ],
     }),
     // Use Node.js API in the Renderer-process
     renderer({
-      nodeIntegration: true,
+      nodeIntegration: false,
     }),
   ],
   server: process.env.VSCODE_DEBUG ? (() => {
@@ -48,7 +52,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@render': path.resolve(__dirname, './src'),
-      "@main": path.resolve(__dirname, './electron/main')
+      "@main": path.resolve(__dirname, './electron')
     }
   }
 })

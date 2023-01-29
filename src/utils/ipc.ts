@@ -1,4 +1,4 @@
-export function ipcTest(){
+export function ipcTest() {
   //@ts-ignore
-  window.electronAPI.test()
+  window.electronAPI.createArticle('aaaaa')
 }

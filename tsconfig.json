@@ -12,13 +12,12 @@
     "strict": true,
     "paths": {
       "@render/*": ["src/*"],
-      "@main/*": ["electron/main/*"]
+      "@main/*": ["electron/*"]
     },
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
-  "references": [
-    { "path": "./tsconfig.node.json" }
-  ]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
+
