@@ -1,17 +1,20 @@
 import * as log from 'electron-log'
-import chalk from 'chalk'
+const chalk = require('chalk')
+chalk.level = 2
+chalk.enable = true
 
+const consoleLog = console.log
 class InnerLog {
-  static info(logStr: string) {
-    console.log(log)
+  static info(logStr: any) {
+    consoleLog(logStr)
   }
 
   static warn(logStr: string) {
-    console.log(chalk.yellow(logStr))
+    consoleLog(chalk.yellow(logStr))
   }
 
-  static error(logStr: string) {
-    console.log(chalk.red(logStr))
+  static error(...args: any[]) {
+    consoleLog(chalk.red(...args))
   }
 }
 
@@ -25,7 +28,18 @@ export default class Logger {
     Logger.logger.warn(logStr)
   }
 
-  public static error(logStr: string) {
-    Logger.logger.error(logStr)
+  public static error(...args: any[]) {
+    Logger.logger.error(...args)
   }
+
+  public static log(...arg: any[]) {
+    Logger.logger.info(arg)
+  }
+}
+
+export function overrideConsole() {
+  console.info = Logger.info
+  console.error = Logger.error
+  console.warn = Logger.warn
+  console.log = Logger.log
 }
