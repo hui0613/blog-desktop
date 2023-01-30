@@ -1,7 +1,7 @@
 import { ExtensionContext } from '@main/types/Context'
 
 export function activate(context: ExtensionContext) {
-  context.hooks.create.tapAsync('juejin', () => {
+  context.hooks.create.tapPromise('juejin', () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve("掘金文章创建")

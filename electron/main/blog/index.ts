@@ -57,6 +57,8 @@ export class BlogHelper {
   }
 
   public createArticle(article: any) {
-    this.hooks.create.callAsync(article, () => { }, () => { })
+    this.hooks.create.callAsync(article, (...rest: any[]) => {
+      console.log(...rest)
+    }, () => { })
   }
 }
