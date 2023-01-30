@@ -1,5 +1,6 @@
 {
   "id": "juejin",
   "name": "掘金",
-  "main": "index.js"
+  "main": "index.js",
+  "platform_login": "https://juejin.cn/"
 }
