@@ -1,11 +1,14 @@
-import { ExtensionContext } from '@main/types/Context'
+import type { ExtensionContext } from '@main/types/Context'
+import { createArticle } from './create'
 
 export function activate(context: ExtensionContext) {
   context.hooks.create.tapPromise('juejin', () => {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve("掘金文章创建")
-      }, 1000);
+      createArticle().then(res => {
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
     })
   })
 }

@@ -45,6 +45,9 @@ export class DewParallelHook implements DewHook {
       task.handler(...args).then(res => {
         resultCB(res)
         done()
+      }).catch(err => {
+        resultCB(err)
+        done()
       })
     })
   }

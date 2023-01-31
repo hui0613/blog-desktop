@@ -22,6 +22,7 @@ export async function createWindow(options: windowOptions) {
   win = new BrowserWindow({
     title: '',
     icon: path.join(process.env.PUBLIC, 'favicon.ico'),
+    height: 800,
     x: externalDisplay.bounds.x + 100,
     y: externalDisplay.bounds.y + 500,
     webPreferences: {
