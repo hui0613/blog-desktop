@@ -1,11 +1,11 @@
 import { Menu } from 'electron'
 import * as path from 'path'
-import type { BrowserWindow } from 'electron'
 import { loadBlogConfig } from '@main/main/utils/plugin'
 import { commonMenu } from './defaultMenu'
+import { createWindow } from '@main/main/window/windowManage'
 
 
-function generateMenuArr() {
+export function generateMenuArr(): Menu {
 
   const pluginRoot = path.resolve(__dirname, '../blog')
   const configs = loadBlogConfig(pluginRoot)
@@ -24,15 +24,10 @@ function generateMenuArr() {
       label: config.name,
       toolTip: "点击跳转到登陆界面",
       click: () => {
-        console.log(config.platform_login)
+        createWindow({ loadUrl: config.platform_login })
       }
     })
   })
 
-  return commonMenu
-}
-
-export function buildMenu(win: BrowserWindow) {
-  const m = Menu.buildFromTemplate(generateMenuArr())
-  Menu.setApplicationMenu(m)
+  return Menu.buildFromTemplate(commonMenu)
 }
