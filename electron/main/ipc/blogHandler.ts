@@ -13,8 +13,13 @@ export const blogHandler = (() => {
     console.log('更新文章')
   }
 
+  const publishArticle = (event: IpcMainInvokeEvent, args: any) => {
+    console.log("发布文章")
+  }
+
   return {
     createArticle,
-    updateArticle
+    updateArticle,
+    publishArticle
   }
 })()

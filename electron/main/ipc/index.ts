@@ -7,4 +7,6 @@ export function registerIpcInvoke() {
 
   ipcMain.handle('blog:update', blogHandler.updateArticle)
 
+  ipcMain.handle('blog:publish', blogHandler.publishArticle)
+
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container" :style="{ width: containerRect.width }">
+  <div class="app-container">
     <router-view></router-view>
   </div>
 </template>
@@ -9,7 +9,7 @@ import { onMounted, reactive } from 'vue'
 
 const containerRect = reactive({
   width: '0px',
-  height: '0px'
+  height: '0px',
 })
 
 onMounted(() => {
