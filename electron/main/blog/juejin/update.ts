@@ -2,17 +2,14 @@ import { getCookies } from './cookies'
 import { request } from '@main/main/utils'
 import { ARTICLE_PARAMS } from './utils'
 
-
-
-
-export function createArticle() {
-  const params = Object.assign({}, ARTICLE_PARAMS)
+export function updateArticle(article: any) {
+  const params = Object.assign({}, ARTICLE_PARAMS, article)
   return new Promise((resolve, reject) => {
     getCookies().then((cookies: string) => {
       request({
         host: 'api.juejin.cn',
         method: 'POST',
-        path: '/content_api/v1/article_draft/create',
+        path: '/content_api/v1/article_draft/update',
         headers: {
           'content-type': 'application/json',
           cookie: cookies,
@@ -21,10 +18,8 @@ export function createArticle() {
           origin: 'https://juejin.cn'
         },
       }, params).then((res: any) => {
-        console.log(res)
         resolve(res)
       }).catch((err: any) => {
-        console.log(err)
         resolve(err)
       })
     })

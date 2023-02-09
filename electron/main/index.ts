@@ -2,6 +2,7 @@ process.env.DIST_ELECTRON = join(__dirname, '..')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
 process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST_ELECTRON, '../public')
 
+
 import { app } from 'electron'
 import { release } from 'os'
 import { join } from 'path'

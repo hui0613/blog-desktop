@@ -1,5 +1,4 @@
-import { BrowserWindow, screen, shell } from 'electron'
-import type { Menu } from 'electron'
+import { BrowserWindow, Menu, screen, shell } from 'electron'
 import * as path from 'path'
 
 export type windowOptions = {
@@ -34,7 +33,7 @@ export async function createWindow(options: windowOptions) {
   })
 
   if (options.menu) {
-    win.setMenu(options.menu)
+    Menu.setApplicationMenu(options.menu)
   } else {
     win.setMenu(null)
   }

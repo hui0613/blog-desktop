@@ -20,7 +20,6 @@ export class BlogHelper {
 
   private startInnerPlugin() {
     const pluginRoot = path.resolve(__dirname)
-    const dirs = fs.readdirSync(pluginRoot)
 
     const configs = loadBlogConfig(pluginRoot)
 
@@ -34,7 +33,17 @@ export class BlogHelper {
 
   public createArticle(article: any) {
     this.hooks.create.callAsync(article, (...rest: any[]) => {
+      console.log("插件执行结果")
       console.log(...rest)
     }, () => { })
+  }
+
+  public update(article: any) {
+    this.hooks.update.callAsync(article, (...rest: any[]) => {
+      console.log("文章跟新结果")
+      console.log(...rest)
+    }, () => {
+
+    })
   }
 }
