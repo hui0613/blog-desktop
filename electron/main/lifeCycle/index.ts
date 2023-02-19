@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { createWindow } from '@main/main/window/windowManage'
 import type { windowOptions } from '@main/main/window/windowManage'
 import { generateMenuArr } from '../menu'
+import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
 
 export function registerAppEvent() {
   app.on('window-all-closed', () => {
@@ -23,6 +24,8 @@ export function registerAppEvent() {
   app.whenReady().then(() => {
     //  程序冷启动时，创建新窗口
     createWindow(generateWindowOptions())
+    const extensionConnection = new ExtensionConnection()
+    extensionConnection.start()
   })
 }
 
