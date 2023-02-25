@@ -19,15 +19,15 @@ export class BlogHelper {
   }
 
   private startInnerPlugin() {
-    const pluginRoot = path.resolve(__dirname)
+    const pluginRoot = path.resolve(__dirname, '../../extensions')
 
     const configs = loadBlogConfig(pluginRoot)
 
     configs.forEach(config => {
       const { activate } = require(config.entry as string)
-      activate({
-        hooks: this.hooks
-      })
+      if (activate instanceof Function) {
+        activate()
+      }
     })
   }
 

@@ -24,14 +24,14 @@ export function loadBlogConfig(pluginRoot: string) {
 }
 
 function loadPluginConfig(pluginPath: string) {
-  const configPath = path.resolve(pluginPath, 'config.json')
+  const configPath = path.resolve(pluginPath, 'package.json')
 
   if (!fs.existsSync(configPath)) {
     console.error("Not found plugin config")
     return null
   }
 
-  const config = require(path.resolve(pluginPath, 'config.json'))
+  const config = require(path.resolve(pluginPath, 'package.json'))
 
   return config
 }

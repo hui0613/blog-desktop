@@ -9,4 +9,6 @@ export function registerIpcInvoke() {
 
   ipcMain.handle('blog:publish', blogHandler.publishArticle)
 
+  ipcMain.handle('blog.restart', blogHandler.restartProcess)
+
 }

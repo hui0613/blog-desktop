@@ -31,12 +31,13 @@
       </div>
       <span class="feature-title">写文章</span>
     </div>
+    <button @click="restartProcess">重启进程</button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import { createArticle } from '@render/utils/ipc'
+import { createArticle, restartProcess } from '@render/utils/ipc'
 
 const router = useRouter()
 

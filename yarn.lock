@@ -2468,6 +2468,11 @@ lib-esm@~0.3.0:
   resolved "https://registry.npmmirror.com/lib-esm/-/lib-esm-0.3.0.tgz#774d59ef27d3ab2b0485386b5dc70b2556178086"
   integrity sha512-P7YcG7OnoaGL2h4j46g/m0P2xHMXlYf+0iCDvVrEfzUVxLe+abytgd2VjUhj9puqEgqRGEDbT504YWj75jHacA==
 
+loader@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmmirror.com/loader/-/loader-2.1.1.tgz#8848b12a3f00572e5a4249333ccdac79773fb402"
+  integrity sha512-Z6nHbyKiECMexVUmpIAVXp+f+8okRtfiMAQ9j0eTtImCghxSqQwrbeSiAyCYKBnfvRlgXLdQt0tPuaZmcBQzpw==
+
 local-pkg@^0.4.3:
   version "0.4.3"
   resolved "https://registry.npmmirror.com/local-pkg/-/local-pkg-0.4.3.tgz#0ff361ab3ae7f1c19113d9bb97b98b905dbc4963"
@@ -3790,6 +3795,11 @@ vite@^3.2.2:
     rollup "^2.79.1"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vscode-loader@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/vscode-loader/-/vscode-loader-1.0.2.tgz#bbd369b0b03b85f3b2f028237d4503fdc525ef03"
+  integrity sha512-jkQ1bm2WhWy1ntRLUeJAtOkg8dw9qieajiCdvouQWKV87WNT5gTekHrfLWxTPi7i1BfaqsDFK4HnH4gswDyj6w==
 
 vue-demi@*:
   version "0.13.11"

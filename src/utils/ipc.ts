@@ -9,3 +9,7 @@ export function updateArticle(article: any) {
 export function publishArticle(article: any) {
   window.electronAPI.publishArticle(article)
 }
+
+export function restartProcess() {
+  window.electronAPI.restartProcess(null)
+}

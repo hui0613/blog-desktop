@@ -6,7 +6,6 @@ process.env.PUBLIC = app.isPackaged ? process.env.DIST : join(process.env.DIST_E
 import { app } from 'electron'
 import { release } from 'os'
 import { join } from 'path'
-import { registerIpcInvoke } from './ipc'
 import { registerAppEvent } from './lifeCycle'
 import { overrideConsole } from './utils/Logger'
 
@@ -22,5 +21,4 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0)
 }
 overrideConsole()
-registerIpcInvoke()
 registerAppEvent()

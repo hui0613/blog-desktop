@@ -3,7 +3,6 @@ import type { IpcMainInvokeEvent } from 'electron'
 
 export const blogHandler = (() => {
   const blogHelper = new BlogHelper()
-  blogHelper.startPlugin()
 
   const createArticle = (event: IpcMainInvokeEvent, args: any) => {
     blogHelper.createArticle('')
@@ -17,9 +16,14 @@ export const blogHandler = (() => {
     console.log("发布文章")
   }
 
+  const restartProcess = (event: IpcMainInvokeEvent, args: any) => {
+    console.log('ddddddd')
+  }
+
   return {
     createArticle,
     updateArticle,
-    publishArticle
+    publishArticle,
+    restartProcess
   }
 })()
