@@ -3777,10 +3777,10 @@ vite-electron-plugin@^0.5.0:
     chokidar "^3.5.3"
     fast-glob "^3.2.12"
 
-vite-plugin-electron-renderer@^0.10.2:
-  version "0.10.4"
-  resolved "https://registry.npmmirror.com/vite-plugin-electron-renderer/-/vite-plugin-electron-renderer-0.10.4.tgz#8e2235855336bf94fd3162d25a8d8a034091b680"
-  integrity sha512-Py0s8ciqKoBYMdMrolyZxp9lRlO+xkXU9n/hgjI98Hs0RLdTN19sxgVYUXg6ZcpoHcDxOYqkaZQV5dFVBR1nMA==
+vite-plugin-electron-renderer@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-electron-renderer/-/vite-plugin-electron-renderer-0.12.1.tgz#0f70ad159d6cbb6f2c2173824a57a1dbda040b2d"
+  integrity sha512-n0w8vrQFafaY1tmIPIQAck4zLanGLYcthvGttH00KRJg47Sjh2mp5Hb8VJ3l8FmpnYTobnl949+N4sunTR1WBA==
   dependencies:
     lib-esm "~0.3.0"
 
