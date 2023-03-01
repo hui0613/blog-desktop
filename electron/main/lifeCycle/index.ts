@@ -24,8 +24,7 @@ export function registerAppEvent() {
   app.whenReady().then(() => {
     //  程序冷启动时，创建新窗口
     createWindow(generateWindowOptions())
-    const extensionConnection = new ExtensionConnection()
-    extensionConnection.start()
+    ExtensionConnection.getInstance().start()
   })
 }
 

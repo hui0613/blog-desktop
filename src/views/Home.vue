@@ -31,7 +31,6 @@
       </div>
       <span class="feature-title">写文章</span>
     </div>
-    <button @click="restartProcess">重启进程</button>
   </div>
 </template>
 

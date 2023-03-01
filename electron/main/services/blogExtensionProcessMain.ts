@@ -1,11 +1,19 @@
 import { NodeRequireInterceptor } from "../api/node/NodeRequireInterceptor"
 import { BlogHelper } from '../blog'
-
-
-process.on('message', (message: unknown, sendHandle: unknown) => {
-  console.log(message)
-})
+import { ProcessMessage } from './processMessage.impl'
 
 new NodeRequireInterceptor().install()
 
-new BlogHelper().startPlugin()
+process.on('message', (message: ProcessMessage, sendHandle: unknown) => {
+  console.log("插件进程收到消息")
+  console.log(message)
+})
+
+function startPlugin() {
+  new BlogHelper().startPlugin()
+}
+
+
+
+
+
