@@ -44,7 +44,7 @@
     "vue"
   ],
   "dependencies": {
-    "@toast-ui/editor": "^3.2.1",
+    "@toast-ui/editor": "^3.2.2",
     "chalk": "4.1.2",
     "electron-log": "^4.4.8",
     "element-plus": "^2.2.28",
