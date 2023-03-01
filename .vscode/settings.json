@@ -1,3 +1,13 @@
 {
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/*electron-builder.json5"
+      ],
+      "url": "https://json.schemastore.org/electron-builder"
+    }
+  ],
   "editor.formatOnSave": true
 }
