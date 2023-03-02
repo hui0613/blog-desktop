@@ -32,6 +32,6 @@ function generateWindowOptions(): windowOptions {
   return {
     loadFile: resolve(process.env.DIST, 'index.html'),
     loadUrl: process.env.VITE_DEV_SERVER_URL,
-    menu: generateMenuArr()
+    // menu: generateMenuArr()
   }
 }

@@ -18,7 +18,7 @@ export class ExtensionConnection {
   }
 
   public async start(startParams?: any) {
-    this.extensionProcess = fork(path.resolve(__dirname, './blogExtensionProcessMain.js'))
+    this.extensionProcess = fork(path.resolve(__dirname, './extensionProcessMain.js'))
 
     this.extensionProcess.on('message', (message: ProcessMessage) => {
       console.log('main process')

@@ -11,7 +11,7 @@ export class BlogHelper {
   }
 
   private startInnerPlugin() {
-    const pluginRoot = path.resolve(__dirname, '../../extensions')
+    const pluginRoot = path.resolve(__dirname, '../../../extensions')
 
     const configs = loadBlogConfig(pluginRoot)
 

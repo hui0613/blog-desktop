@@ -1,12 +1,6 @@
 
-
+import { onCreate } from 'dew-blog'
 
 export function activate() {
-  setTimeout(() => {
-    try {
-      console.log(require('dew-blog'))
-    } catch (err) {
-      console.log(err)
-    }
-  }, 1000 * 2);
+  console.log(onCreate)
 }

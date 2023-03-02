@@ -1,10 +1,8 @@
-import { BlogHelper } from '@main/main/blog'
 import type { IpcMainInvokeEvent } from 'electron'
 import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
 
 
 export const blogHandler = (() => {
-  const blogHelper = new BlogHelper()
   const extensionConnection: ExtensionConnection = ExtensionConnection.getInstance()
 
   const createArticle = (event: IpcMainInvokeEvent, args: any) => {
