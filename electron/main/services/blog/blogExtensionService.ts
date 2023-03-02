@@ -1,18 +1,10 @@
-import { DewParallelHook } from './../tapable/index';
 import * as path from 'path'
-import * as fs from 'fs'
-import type { BlogHook } from '@main/types/Context'
 import { loadBlogConfig } from '@main/main/utils/plugin'
+import { create, update } from '@main/main/api/common'
 
 export class BlogHelper {
-  private hooks: BlogHook
 
-  constructor() {
-    this.hooks = {
-      create: new DewParallelHook(),
-      update: new DewParallelHook()
-    }
-  }
+  constructor() { }
 
   public startPlugin() {
     this.startInnerPlugin()
@@ -32,18 +24,18 @@ export class BlogHelper {
   }
 
   public createArticle(article: any) {
-    this.hooks.create.callAsync(article, (...rest: any[]) => {
-      console.log("插件执行结果")
-      console.log(...rest)
-    }, () => { })
+    create.fire(article, (res) => {
+      console.log(res)
+    }, () => {
+      console.log('done')
+    })
   }
 
   public update(article: any) {
-    this.hooks.update.callAsync(article, (...rest: any[]) => {
-      console.log("文章跟新结果")
-      console.log(...rest)
+    update.fire(article, (res) => {
+      console.log(res)
     }, () => {
-
+      console.log('done')
     })
   }
 }

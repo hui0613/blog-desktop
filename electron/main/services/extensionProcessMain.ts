@@ -1,5 +1,5 @@
 import { NodeRequireInterceptor } from "../api/node/NodeRequireInterceptor"
-import { BlogHelper } from '../blog'
+import { BlogHelper } from './blog/blogExtensionService'
 import { ProcessMessage } from './processMessage.impl'
 
 new NodeRequireInterceptor().install()
