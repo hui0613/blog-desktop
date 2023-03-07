@@ -12,5 +12,5 @@
       "@main/*": ["electron/*"]
     }
   },
-  "include": ["package.json", "electron", "./src/dew-dts/dew.d.ts"]
+  "include": ["package.json", "electron", "./dew-dts"]
 }

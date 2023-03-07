@@ -1,8 +1,6 @@
 import type { IpcMainInvokeEvent } from 'electron'
 import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
 
-import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
-
 export const blogHandler = (() => {
   const extensionConnection: ExtensionConnection = ExtensionConnection.getInstance()
 
@@ -10,24 +8,16 @@ export const blogHandler = (() => {
     console.log(args)
     console.log('创建文章')
     extensionConnection.sendMsg('blog:create', args)
-    console.log(args)
-    console.log('创建文章')
-    extensionConnection.sendMsg('blog:create', args)
   }
 
   const updateArticle = (event: IpcMainInvokeEvent, args: any) => {
     console.log(args)
-    console.log(args)
     console.log('更新文章')
-    extensionConnection.sendMsg('blog:update', args)
-
     extensionConnection.sendMsg('blog:update', args)
   }
 
   const publishArticle = (event: IpcMainInvokeEvent, args: any) => {
     console.log('发布文章')
-    extensionConnection.sendMsg('blog:publish', args)
-
     extensionConnection.sendMsg('blog:publish', args)
   }
 

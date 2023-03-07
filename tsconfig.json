@@ -17,7 +17,6 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["src", "./src/dew-dts/dew.d.ts"],
+  "include": ["src", "./dew-dts/dew.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
-
