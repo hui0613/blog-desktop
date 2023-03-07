@@ -27,8 +27,9 @@ export async function createWindow(options: windowOptions) {
     y: externalDisplay.bounds.y,
     webPreferences: {
       preload,
-      nodeIntegration: false,
+      nodeIntegration: true,
       contextIsolation: true,
+
     },
   })
 

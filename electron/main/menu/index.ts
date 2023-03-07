@@ -7,7 +7,7 @@ import { createWindow } from '@main/main/window/windowManage'
 
 export function generateMenuArr(): Menu {
 
-  const pluginRoot = path.resolve(__dirname, '../blog')
+  const pluginRoot = path.resolve(__dirname, '../../extensions')
   const configs = loadBlogConfig(pluginRoot)
   const blogMenu = {
     label: '平台',

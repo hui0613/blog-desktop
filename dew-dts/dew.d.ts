@@ -8,5 +8,5 @@ declare module 'dew-blog' {
     tapPromise: any
   }
 
-  export const getCookie: any
+  export const getCookie: (args: any) => Promise<any>
 }

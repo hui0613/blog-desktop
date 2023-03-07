@@ -1,6 +1,7 @@
 
 import { onCreate } from 'dew-blog'
+import { createArticle } from './article'
 
 export function activate() {
-  console.log(onCreate)
+  onCreate.tapPromise(createArticle)
 }

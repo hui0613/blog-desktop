@@ -6,6 +6,7 @@ import type { windowOptions } from '@main/main/window/windowManage'
 import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
 import { overrideConsole } from './utils/Logger'
 import { registerIpcInvoke } from './ipc'
+import { generateMenuArr } from './menu'
 
 process.env.DIST_ELECTRON = join(__dirname, '..')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
@@ -53,6 +54,6 @@ function generateWindowOptions(): windowOptions {
   return {
     loadFile: resolve(process.env.DIST, 'index.html'),
     loadUrl: process.env.VITE_DEV_SERVER_URL,
-    // menu: generateMenuArr()
+    menu: generateMenuArr()
   }
 }
