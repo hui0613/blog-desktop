@@ -1,4 +1,3 @@
-export * from './bases'
+import 'reflect-metadata'
 
-import { createArticleTable } from './tables'
-
+export * from './blog'

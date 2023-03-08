@@ -1,4 +1,4 @@
-import { createApiFactoryAndRegisterActors } from "./extHost.api.impl"
+import { createApiFactoryAndRegisterActors } from './extHost.api.impl'
 
 export abstract class RequireInterceptor {
   protected _factories: Map<string, any>
@@ -10,7 +10,7 @@ export abstract class RequireInterceptor {
   }
 
   // 安装 require 拦截器
-  protected abstract _installInterceptor();
+  protected abstract _installInterceptor()
 
   public install() {
     this.register('dew-blog', new DEWNodeModule(createApiFactoryAndRegisterActors))

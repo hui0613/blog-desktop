@@ -1,13 +1,14 @@
-import { NodeRequireInterceptor } from "../api/node/NodeRequireInterceptor"
+import { NodeRequireInterceptor } from '../api/node/NodeRequireInterceptor'
 import { BlogHelper } from './blog/blogExtensionService'
 import { ProcessMessage } from './processMessage.impl'
+import 'reflect-metadata'
 
 new NodeRequireInterceptor().install()
 
 const blogHelper = new BlogHelper()
 
 process.on('message', (message: ProcessMessage, sendHandle: unknown) => {
-  console.log("插件进程收到消息")
+  console.log('插件进程收到消息')
   console.log(message)
   switch (message.type) {
     case 'plugin:start':
@@ -37,13 +38,6 @@ function updateArticle(msg: any) {
   blogHelper.update(msg)
 }
 
-function publishArticle() { }
+function publishArticle() {}
 
-function restartPluginProcess(params: any) {
-
-}
-
-
-
-
-
+function restartPluginProcess(params: any) {}

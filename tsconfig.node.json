@@ -6,6 +6,8 @@
     "moduleResolution": "Node",
     "jsx": "preserve",
     "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {

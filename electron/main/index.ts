@@ -6,6 +6,7 @@ import type { windowOptions } from '@main/main/window/windowManage'
 import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
 import { overrideConsole } from './utils/Logger'
 import { registerIpcInvoke } from './ipc'
+import 'reflect-metadata'
 import { generateMenuArr } from './menu'
 
 process.env.DIST_ELECTRON = join(__dirname, '..')

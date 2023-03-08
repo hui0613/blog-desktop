@@ -7,6 +7,8 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "sourceMap": true,
     "baseUrl": "./",
     "strict": true,
