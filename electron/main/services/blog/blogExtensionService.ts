@@ -1,41 +1,37 @@
-import * as path from 'path'
-import { loadBlogConfig } from '@main/main/utils/plugin'
-import { create, update } from '@main/main/api/common'
+import { BlogHelper } from './BlogHelper';
+import { SvcService } from './../../utils/svc/svc';
 
-export class BlogHelper {
+import { inject, singleton } from 'tsyringe'
 
-  constructor() { }
 
-  public startPlugin() {
-    this.startInnerPlugin()
+@singleton()
+export class BlogExtensionService {
+
+  constructor(
+    @inject(BlogHelper) private _blogHelper: BlogHelper,
+    @inject(SvcService) private readonly _svcService: SvcService) {
+    this._init()
   }
 
-  private startInnerPlugin() {
-    const pluginRoot = path.resolve(__dirname, '../../../extensions')
+  private _init() {
+    this._registerSvc()
+    process.on('message', (message: any) => {
+      // 将消息数据传入 svc 中进行处理
+      this._svcService.enterData(message)
+    })
+    this._svcService.writer = (params: any) => {
+      process.send(params)
+    }
+  }
 
-    const configs = loadBlogConfig(pluginRoot)
-
-    configs.forEach(config => {
-      const { activate } = require(config.entry as string)
-      if (activate instanceof Function) {
-        activate()
-      }
+  private _registerSvc() {
+    this._svcService.register('svc_plugin_start', (params: any) => {
+      return new Promise((resolve, reject) => {
+        this._blogHelper.startPlugin()
+        resolve(true)
+      })
     })
   }
 
-  public createArticle(article: any) {
-    create.fire(article, (res) => {
-      console.log(res)
-    }, () => {
-      console.log('done')
-    })
-  }
 
-  public update(article: any) {
-    update.fire(article, (res) => {
-      console.log(res)
-    }, () => {
-      console.log('done')
-    })
-  }
 }

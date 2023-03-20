@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import { release } from 'os'
 import { resolve, join } from 'path'
 import { app, BrowserWindow } from 'electron'
@@ -6,8 +7,9 @@ import type { windowOptions } from '@main/main/window/windowManage'
 import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
 import { overrideConsole } from './utils/Logger'
 import { registerIpcInvoke } from './ipc'
-import 'reflect-metadata'
 import { generateMenuArr } from './menu'
+import { container } from 'tsyringe';
+
 
 process.env.DIST_ELECTRON = join(__dirname, '..')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
@@ -48,7 +50,7 @@ app.on('activate', () => {
 app.whenReady().then(() => {
   //  程序冷启动时，创建新窗口
   createWindow(generateWindowOptions())
-  ExtensionConnection.getInstance().start()
+  container.resolve(ExtensionConnection).start()
 })
 
 function generateWindowOptions(): windowOptions {

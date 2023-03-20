@@ -1,8 +1,9 @@
 import type { IpcMainInvokeEvent } from 'electron'
 import { ExtensionConnection } from '@main/main/services/extensionHostConnection'
+import { container } from 'tsyringe'
 
 export const blogHandler = (() => {
-  const extensionConnection: ExtensionConnection = ExtensionConnection.getInstance()
+  const extensionConnection: ExtensionConnection = container.resolve(ExtensionConnection)
 
   const createArticle = (event: IpcMainInvokeEvent, args: any) => {
     extensionConnection.sendMsg('blog:create', args)
