@@ -52,7 +52,7 @@
     "element-plus": "^2.2.28",
     "knex": "^2.4.2",
     "loader": "^2.1.1",
-    "pinia": "^2.0.30",
+    "pinia": "^2.0.33",
     "sqlite3": "^5.1.4",
     "vscode-loader": "^1.0.2"
   }
