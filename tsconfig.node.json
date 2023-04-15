@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "preserve",
+    "types": ["type.d.ts"]
+  },
+  "include": ["packages/**", "plugins/**"]
+}
