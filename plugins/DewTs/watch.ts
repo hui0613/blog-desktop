@@ -1,5 +1,5 @@
 import { FSWatcher, watch } from 'chokidar'
-import { existsSync } from 'fs-extra'
+import { existsSync, copyFileSync } from 'fs-extra'
 import { buildFile } from './build'
 import { DewWatchOptions } from './config'
 import * as path from 'path'
@@ -25,6 +25,9 @@ export function dewWatch(options: DewWatchOptions): FSWatcher {
           filepath,
           moduleRoot: moduleRoot || include,
         })
+      } else if (filepath.endsWith('.json')) {
+        const outFilePath: string = path.resolve('out', path.relative(moduleRoot || include, filepath))
+        copyFileSync(filepath, outFilePath)
       }
     }
 

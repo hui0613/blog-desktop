@@ -3,7 +3,6 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var log = require('electron-log');
-var chalk = require('chalk');
 
 function _interopNamespaceDefault(e) {
   var n = Object.create(null);
@@ -24,29 +23,40 @@ function _interopNamespaceDefault(e) {
 
 var log__namespace = /*#__PURE__*/_interopNamespaceDefault(log);
 
+const consoleLog = console.log;
 class InnerLog {
-  static info(logStr) {
-    console.log(log__namespace);
+  static info(...args) {
+    consoleLog(...args);
   }
   static warn(logStr) {
-    console.log(chalk.yellow(logStr));
+    consoleLog(logStr);
   }
-  static error(logStr) {
-    console.log(chalk.red(logStr));
+  static error(...args) {
+    consoleLog(...args);
   }
 }
 const _Logger = class {
-  static info(logStr) {
-    _Logger.logger.info(logStr);
+  static info(...args) {
+    _Logger.logger.info(...args);
   }
   static warn(logStr) {
     _Logger.logger.warn(logStr);
   }
-  static error(logStr) {
-    _Logger.logger.error(logStr);
+  static error(...args) {
+    _Logger.logger.error(...args);
+  }
+  static log(...arg) {
+    _Logger.logger.info(...arg);
   }
 };
 let Logger = _Logger;
 Logger.logger = process.env.NODE_ENV === "development" ? InnerLog : log__namespace;
+function overrideConsole() {
+  console.info = Logger.info;
+  console.error = Logger.error;
+  console.warn = Logger.warn;
+  console.log = Logger.log;
+}
 
 exports.default = Logger;
+exports.overrideConsole = overrideConsole;

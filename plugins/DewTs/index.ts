@@ -38,6 +38,13 @@ export function dewTs(config: DewTsOptions): Plugin {
         process._plugin_watcher = dewWatch(getConfig())
         process._electronProcess?.kill()
       })
+
+      process.on('exit', () => {
+        if (process._electronProcess) {
+          process._electronProcess.kill()
+          process._electronProcess = null
+        }
+      })
     },
   }
 }
