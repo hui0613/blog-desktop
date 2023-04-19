@@ -33,9 +33,9 @@ async function createWindow(options) {
     title: "",
     icon: path__namespace.join(process.env.PUBLIC, "favicon.ico"),
     height: 1e3,
-    width: 1200,
+    width: 800,
     x: externalDisplay.bounds.x + 100,
-    y: externalDisplay.bounds.y + 1600,
+    y: externalDisplay.bounds.y + 100,
     webPreferences: {
       preload,
       nodeIntegration: true,

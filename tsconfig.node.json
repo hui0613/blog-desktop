@@ -3,7 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "jsx": "preserve",
-    "types": ["type.d.ts"]
+    "types": ["type.d.ts", "dew-dts/dew.d.ts"]
   },
-  "include": ["packages/**", "plugins/**"]
+  "include": ["src", "plugins", "dew-dts"]
 }

@@ -22,9 +22,9 @@ export async function createWindow(options: windowOptions) {
     title: '',
     icon: path.join(process.env.PUBLIC, 'favicon.ico'),
     height: 1000,
-    width: 1200,
+    width: 800,
     x: externalDisplay!.bounds.x + 100,
-    y: externalDisplay!.bounds.y + 1600,
+    y: externalDisplay!.bounds.y + 100,
     webPreferences: {
       preload,
       nodeIntegration: true,

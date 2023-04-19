@@ -1,1 +1,3 @@
 node_modules
+*-error.log
+out
